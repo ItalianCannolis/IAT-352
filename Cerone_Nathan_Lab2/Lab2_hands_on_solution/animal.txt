@@ -1,0 +1,3 @@
+cat,fish,city,yellow
+wolf,meat,forest,grey
+bear,fish,cave,brown
