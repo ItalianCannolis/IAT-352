@@ -3,30 +3,10 @@
     <link rel="stylesheet" href="css/style_sheet.css">
     </head>
 
-    <?php
-            /*if(isset ($_POST['program_type']) && isset($_POST['language_of_instruction']) && isset($_POST['country']) && isset($_POST['level_of_study']) && isset($_POST['term']) ){
 
-            if(empty ($_POST['program_type']) || empty($_POST['language_of_instruction']) || empty($_POST['country']) || empty($_POST['level_of_study']) || empty($_POST['term'])) {
-                echo "you did not enter your program type or language of instruction or country or level of study or term.";
-            }
-            else{
-
-                echo "Your application is successfully submitted the following information is listed in the application:";
-
-                echo "<li> ".$_POST['program_type']."</a></li>";
-                echo "<li> ".$_POST['language_of_instruction']."</a></li>";
-                echo "<li> ".$_POST['country']."</a></li>";
-                echo "<li> ".$_POST['level_of_study']."</a></li>";
-                echo "<li> ".$_POST['term']."</a></li>";
-
-                
-            }
-        }
-         */
-    ?>
    
     <body>
-        <form method = "POST" action = "add-recipe.php">
+        <form method = "POST" action = "process-recipe.php">
 
 
             <label> recipe name </label>
@@ -38,7 +18,7 @@
 
             <label> This Serves: </label>
             <label> 1 Person </label>
-            <input type = "radio" name = "servingSize" value = "single">
+            <input type = "radio" name = "servingSize" value = "single" checked>
             <label> 2 People </label>
             <input type = "radio" name = "servingSize" value = "double"> 
             <label> 3 People </label>
