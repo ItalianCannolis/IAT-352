@@ -1,0 +1,18 @@
+.threeColumn {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  /*
+  .project {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+    -ms-grid-rows: 75% 25%;
+    grid-template-rows: 75% 25%;
+    margin-bottom: 1rem;
+  }
+  */
