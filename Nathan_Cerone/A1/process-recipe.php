@@ -45,14 +45,14 @@
                 }
 
             }
-            $combineditems = implode(',',$items);
+            $combineditems = implode('+++',$items);
             $combined = $_POST['recipeName'].",".$_POST['recipeDesc'].",".$_POST['servingSize'].",".$combineditems.",".$_POST['recipeStep'].",".$_POST['recipeTags'];
             
             echo $combined;
         }
 
         function writeToFile(){
-            $file = fopen('Files/recipes.csv','r');
+            $file = fopen('recipes/recipes.csv','r');
             global $combined;
             $duplicate = false;
             while ($lineCSV = fgetcsv($file)){
@@ -65,30 +65,25 @@
             fclose($file);
       
             if (!$duplicate){
-              $file = fopen('Files/recipes.csv','a');
+              $file = fopen('recipes/recipes.csv','a');
         
               fwrite($file, "\n".$combined);
               fclose($file);
             }
-            /*
-            $file = fopen('Files/recipes.csv','r');
-      
-            while ($lineCSV = fgetcsv($file)){
-      
-              echo "fgetcsv method:".$lineCSV[0]." ".$lineCSV[1]." ".$lineCSV[2]." ".$lineCSV[3];
-              echo "<br></br>";
-      
-            }
-           
-      
-      
-            fclose($file);
-             */
+
+        }
+
+        function redirect(){
+            $newURL = "list_recipes.php";
+            header('Location: '.$newURL);
         }
 
 
         implodeCSVString();
         writeToFile();
+        redirect();
+
+
         ?>
 
 </html>
