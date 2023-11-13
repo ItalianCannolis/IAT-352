@@ -20,33 +20,45 @@ function create_recipe_form() {
 }
 
 function generateFormStart(){
-        echo '<form method = "POST" action = "process-recipe.php">';
+        echo '
+        <div class ="recipetitle">
+            <h2> Add Recipe </h2>
+        </div>        
+        <form method = "POST" action = "process-recipe.php" class="recipeform">
+        ';
 }
 function generateFormEnd(){
     echo '        
-        <input type = "submit" value = "Publish">
-
-        </form>';
+        <div class = "submitdiv">
+            <input type = "submit" value = "Publish" class = "submitbtn">
+        </div>
+    </form>';
 }
 
 
  function generateRecipeNameSection(){
     echo '
 
-                <label> recipe name </label>
-                <input type = "text" name = "recipeName" />
-            <div>
-                <label> recipe description </label>
-                <input type = "text" name = "recipeDesc" />
-            <div>      
 
-                <label> This Serves: </label>
-                <label> 1 Person </label>
-                <input type = "radio" name = "servingSize" value = "single" checked>
-                <label> 2 People </label>
-                <input type = "radio" name = "servingSize" value = "double"> 
-                <label> 3 People </label>
-                <input type = "radio" name = "servingSize" value = "triple">
+
+    <label> Recipe Name </label>
+        <input type = "text" name = "recipeName" class = "thickbox"/>
+    <div>
+        <label> Recipe Description </label>
+        <input type = "text" name = "recipeDesc" class = "bigbox" />
+    </div>      
+    <div>
+        <label> This Serves: </label>
+        
+        <input type = "radio" name = "servingSize" value = "single" checked>
+        <label> 1 Person </label>
+        
+        <input type = "radio" name = "servingSize" value = "double"> 
+        <label> 2 People </label>
+        
+        <input type = "radio" name = "servingSize" value = "triple">
+        <label> 3 People </label>
+    </div> 
                 ';
  }
 
@@ -55,43 +67,50 @@ function generateFormEnd(){
         $qtyname = strval($i)."qty";
         $unitname = strval($i)."unit";
         $itemname = strval($i)."item";
+
+
+        
         echo '
-            <div class="threeColumn">
-                <div>
-                    <label> Quantity </label>
-                    <input type = "text" name ='. $qtyname. '>
-                </div>
-                <div>
-                    <label> Measurement </label>
-                    <select name ='. $unitname. '>
-                        <option value = "">None </option>
-                        <option value = "pound">pound(s) </option>                
-                        <option value = "gram">gram(s) </option>
-                        <option value = "ounce">ounce(s) </option>
-                        <option value = "piece">pcs </option>
-                        <option value = "miliLiter">ml </option>
-                        <option value = "tblSpoon">tbl spoon </option>
-                        <option value = "teaSpoon">teaspoon </option>            
-                        <option value = "cup">cup </option>          
-                    </select> 
-                </div>
-                <div>
-                    <label> Item </label>
-                    <input type = "text" name ='. $itemname. '>  
-                </div>
-            </div>';
+        <div class="threeColumn">
+        <div>
+            <label> Quantity: </label>
+            <input type = "text" name ='. $qtyname. ' class = "thickbox">
+        </div>
+        <div>
+            <label> Unit: </label>
+            <select name ='. $unitname. ' class = "thickbox">
+                <option value = "">None </option>
+                <option value = "pound">pound(s) </option>                
+                <option value = "gram">gram(s) </option>
+                <option value = "ounce">ounce(s) </option>
+                <option value = "piece">pcs </option>
+                <option value = "miliLiter">ml </option>
+                <option value = "tblSpoon">tbl spoon(s) </option>
+                <option value = "teaSpoon">teaspoon(s) </option>            
+                <option value = "cup">cup(s) </option>          
+            </select> 
+        </div>
+        <div>
+            <label> Item: </label>
+            <input type = "text" name ='. $itemname. ' class = "thickbox">  
+        </div>
+        </div>';
     }
  }
 
  function generateInstructionsSection(){
     echo '
-            <label> recipe steps </label>
-            <input type = "text" name = "recipeStep" /> 
 
-            <div>
-                <label> recipe tags (Seperate each tag with a comma) </label>
-                <input type = "text" name = "recipeTags" /> 
-            </div>
+        <label> Recipe Steps: </label>
+            <input type = "text" name = "recipeStep" class = "bigbox"/> 
+        </div>
+
+
+        <div>
+            <label> Recipe Tags (seperate each tag with a comma) </label>
+            <input type = "text" name = "recipeTags" class = "bigbox"/> 
+        </div>
+
         ';
  }
  // and so on...

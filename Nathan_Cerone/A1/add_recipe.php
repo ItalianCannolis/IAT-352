@@ -9,12 +9,18 @@
     </head>
 
     <body>
+        <div class="navbar">
+            <h1> Chef's Reminder </h1>
+            <a href="add_recipe.php">Add Recipes</a>
+            <a href="index.php">See Recipes</a>
+        </div>
 
-        <?php
-        include 'b_form_functions.php';
-        create_recipe_form()
-        ?>
+        <section>
+            <?php
+            include 'b_form_functions.php';
+            create_recipe_form()
+            ?>
 
-
+        </section>
     </body>
 </html>

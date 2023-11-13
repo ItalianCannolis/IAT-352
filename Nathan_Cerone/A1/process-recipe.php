@@ -1,30 +1,59 @@
 <html>
 
 <?php
-        /*
-        if(isset ($_POST['recipeName']) && isset($_POST['recipeDesc']) && isset($_POST['servingSize']) && isset($_POST['0qty']) && isset($_POST['0unit']) && isset($_POST['0item']) && isset($_POST['recipeStep']) && isset($_POST['recipeTags']) ){
+        $combined;
+        $validValues = true;
+        function checkValues(){
 
-            if(empty ($_POST['recipeName']) || empty($_POST['recipeDesc'])) {
-                echo "No recipe name or description provided.";
-            }
-            else if(empty ($_POST['servingSize'])) {
-                echo "Please select a serving size.";
-            }
-            else if(empty ($_POST['0qty']) || empty($_POST['0unit']) || empty($_POST['0item'])) {
-                echo "The first ingredient slot is missing information, is it placed in the wrong slot?";
-            }
-            else if(empty ($_POST['recipeStep'])) {
-                echo "Please provide steps to the recipe.";
-            }
-            
-            else{
-                echo "Your recipe name is " .$_POST['recipeName'] . " with the description of: " .$_POST['recipeDesc'] . ". The serving size is ".$_POST['servingSize']. " and the first ingredient is ".$_POST['0qty']. " ".$_POST['0unit']. " of ".$_POST['0item']. ".";
+            if(isset ($_POST['recipeName']) && isset($_POST['recipeDesc']) && isset($_POST['servingSize']) && isset($_POST['recipeStep']) && isset($_POST['recipeTags']) && isset($_POST['0qty']) && isset($_POST['0unit']) && isset($_POST['0item']) ){
+                global $validValues;
+                for ($i = 0; $i< 10; $i++){
+                    
+
+                    $qtyname = strval($i)."qty";
+                    $unitname = strval($i)."unit";
+                    $itemname = strval($i)."item";
+                    echo $_POST[$qtyname]. "<br>";
+                    if(empty ( $_POST[$qtyname]) == false){
+                        if(is_numeric($_POST[$qtyname]) == false){
+                            returnRedirect();
+                            $validValues = false;
+                        }
+                    }
+                    if( (empty ( $_POST[$qtyname]) || empty($_POST[$unitname]) || empty($_POST[$itemname])) ){
+    
+                        if( (empty ( $_POST[$qtyname]) && empty($_POST[$unitname]) && empty($_POST[$itemname])) ){
+                            break;
+                        }
+                        else {
+                            returnRedirect();
+                            $validValues = false;
+                        }
+
+                    }
+
+                    
+                }
+
+                if(empty ($_POST['recipeName']) || empty($_POST['recipeDesc'])) {
+                    returnRedirect();
+                    $validValues = false;
+                }
+                else if(empty ($_POST['0qty']) || empty($_POST['0unit']) || empty($_POST['0item'])) {
+                    returnRedirect();
+                    $validValues = false;
+                }
+                else if(empty ($_POST['recipeStep'])) {
+                    returnRedirect();
+                    $validValues = false;
+                }
+                   
+
                 
             }
-            
         }
-        */
-        global $combined;
+        
+
         function implodeCSVString(){
             $items = array();
             for ($i = 0; $i< 10; $i++){
@@ -74,14 +103,27 @@
         }
 
         function redirect(){
-            $newURL = "list_recipes.php";
+            $newURL = "index.php";
+            header('Location: '.$newURL);
+        }
+        function returnRedirect(){
+            $newURL = "add_recipe.php";
             header('Location: '.$newURL);
         }
 
+        function processRecipe(){
+            global $validValues;
+            print $validValues;
+            if ($validValues == true){
+                implodeCSVString();
+                writeToFile();
+                redirect();
+            }
+        }
+        
+        checkValues();
+        processRecipe();
 
-        implodeCSVString();
-        writeToFile();
-        redirect();
 
 
         ?>
